@@ -1,7 +1,6 @@
 package com.example.soldout;
 
 import android.app.Activity;
-import android.os.Debug;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,7 +23,20 @@ public class QRManager {
         switch (tag){
 
             case "FoodData":
-                Toast.makeText(activity, "Scanned: " + data, Toast.LENGTH_LONG).show();
+                Log.d("debug", "Entry: " + data);
+                TcpConnection.Send(data);
+                break;
+
+            case "Address":
+                String ip = "";
+                int port = 0;
+                try {
+                    String[] split = data.split("/");
+                    ip = split[0];
+                    port = Integer.parseInt(split[1]);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
 
             default:

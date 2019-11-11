@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TcpConnection.Open("192.168.3.64", 14200);
+
     }
 
     public void onClickedQRButton(View view){

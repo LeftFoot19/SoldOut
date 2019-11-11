@@ -9,35 +9,17 @@ import java.nio.file.OpenOption;
 
 public class TcpConnection extends Thread{
 
-    private static TcpConnection tcpConnection;
-
-    private String ip;
-    private int port;
+    private static String ip;
+    private static int port;
 
     private Socket socket;
-    public Receiver receiver;
 
-    private TcpConnection(String ip, int port){
-        this.ip = ip;
-        this.port = port;
-    }
+    private TcpConnection(String ip, int port){ }
 
     @Override
     public void run() {
 
         try{
-
-            Log.d("user", "run: piyo");
-
-            //ソケット作成
-            this.socket = new Socket(ip, port);
-
-            Log.d("user", "run: huga");
-
-            //Receiver
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            this.receiver = new Receiver(bufferedReader);
-            this.receiver.start();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -47,51 +29,43 @@ public class TcpConnection extends Thread{
 
     public static void Open(String ip, int port) {
 
-        //既に開いている接続を破棄
-        if(TcpConnection.getInstance() != null) TcpConnection.getInstance().disconnect();
-
-        //接続
-        TcpConnection.tcpConnection = new TcpConnection(ip, port);
-        tcpConnection.start();
+        TcpConnection.ip = ip;
+        TcpConnection.port = port;
 
     }
 
     public static void Send(final String text){
 
-        if(TcpConnection.getInstance().socket != null){
-            Thread sender = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
+        Thread sender = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
 
-                        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(TcpConnection.getInstance().socket.getOutputStream(), "UTF-8"));
-                        bufferedWriter.write(text);
-                        bufferedWriter.flush();
-                        bufferedWriter.close();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+                    //ストリーム作成
+                    Socket socket = new Socket(TcpConnection.ip, TcpConnection.port);
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                    //送信
+                    bufferedWriter.write(text);
+                    bufferedWriter.flush();
+
+                    //閉じる
+                    bufferedWriter.close();
+                    socket.close();
+
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-            sender.start();
+        sender.start();
 
-        }
-    }
-
-    public static TcpConnection getInstance(){
-        return TcpConnection.tcpConnection;
     }
 
     public void disconnect() {
 
         try{
-
-            if(this.receiver != null) this.receiver.disconnect();
-            if(this.socket != null) this.socket.close();
-
-            this.receiver = null;
-            this.socket = null;
 
         }catch (Exception e){
             e.printStackTrace();

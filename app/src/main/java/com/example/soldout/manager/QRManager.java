@@ -1,8 +1,9 @@
-package com.example.soldout;
+package com.example.soldout.manager;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.soldout.client.TcpConnection;
 
 public class QRManager {
 

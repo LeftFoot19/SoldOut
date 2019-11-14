@@ -1,4 +1,4 @@
-package com.example.soldout;
+package com.example.soldout.manager;
 
 import android.app.Activity;
 

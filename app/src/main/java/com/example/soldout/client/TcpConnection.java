@@ -1,11 +1,9 @@
-package com.example.soldout;
+package com.example.soldout.client;
 
 import android.util.Log;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.Buffer;
-import java.nio.file.OpenOption;
 
 import leftfoot.FoodData;
 

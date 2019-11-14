@@ -7,25 +7,12 @@ import java.net.Socket;
 import java.nio.Buffer;
 import java.nio.file.OpenOption;
 
-public class TcpConnection extends Thread{
+import leftfoot.FoodData;
+
+public class TcpConnection{
 
     private static String ip;
     private static int port;
-
-    private Socket socket;
-
-    private TcpConnection(String ip, int port){ }
-
-    @Override
-    public void run() {
-
-        try{
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     public static void Open(String ip, int port) {
 
@@ -36,21 +23,37 @@ public class TcpConnection extends Thread{
 
     public static void Send(final String text){
 
-        Thread sender = new Thread(new Runnable() {
+        Thread transmitter = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
 
-                    //ストリーム作成
+                    //ソケット作成
                     Socket socket = new Socket(TcpConnection.ip, TcpConnection.port);
-                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-                    //送信
-                    bufferedWriter.write(text);
-                    bufferedWriter.flush();
+                    //出力ストリーム作成
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+
+                    //リクエスト送信
+                    objectOutputStream.writeObject(text);   //ストリーム書き込み
+                    objectOutputStream.flush();             //書き込み内容送信
+
+                    //入力ストリーム作成
+                    ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+
+                    //返信待ち
+                    Object received;
+                    if((received = objectInputStream.readObject()) != null){
+                        //型確認
+                        if (received instanceof FoodData){
+                            FoodData foodData = (FoodData) received;
+                            Log.d("user", "received: \n" + foodData.toString());
+                        }else{
+                            Log.d("user", "received: not FoodData");
+                        }
+                    }
 
                     //閉じる
-                    bufferedWriter.close();
                     socket.close();
 
                 }catch (Exception e){
@@ -59,17 +62,7 @@ public class TcpConnection extends Thread{
             }
         });
 
-        sender.start();
-
-    }
-
-    public void disconnect() {
-
-        try{
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        transmitter.start();
 
     }
 

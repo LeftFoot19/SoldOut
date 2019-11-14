@@ -3,45 +3,31 @@ package com.example.soldout;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.ObjectInputStream;
+import java.net.Socket;
 
 public class Receiver extends Thread{
 
-    private BufferedReader bufferedReader;
-    private boolean isContinue;
+    private Socket socket;
 
-    public Receiver(BufferedReader bufferedReader){
-        this.bufferedReader = bufferedReader;
-        this.isContinue = true;
+    public Receiver(Socket socket){
+        this.socket = socket;
+        this.start();
     }
 
     @Override
     public void run() {
 
-        try {
+        try{
 
-            String receivedText;
-            while(this.isContinue && ((receivedText = this.bufferedReader.readLine()) != null)){
-                //受信処理
-                Log.d("user", "run: " + receivedText);
-            }
+            ObjectInputStream objectInputStream = new ObjectInputStream(this.socket.getInputStream());
+            Object receivedObject = objectInputStream.readObject();
+            Log.d("user", "receiver: " + receivedObject.toString());
+            this.socket.close();
 
-        }catch(Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
 
     }
-
-    public void disconnect(){
-
-        try {
-
-            this.bufferedReader.close();
-            this.isContinue = false;
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
 }

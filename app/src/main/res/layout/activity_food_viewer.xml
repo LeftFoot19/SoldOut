@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4pt"
+    android:paddingStart="4pt"
+    android:paddingLeft="4pt"
+    android:paddingTop="4pt"
+    android:paddingEnd="4pt"
+    android:paddingRight="4pt"
+    android:paddingBottom="4pt"
     tools:context=".activity.FoodViewer">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="46dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/productNameText"
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/meiryo"
+            android:text="商品名"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="30sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/currentPriceText"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/meiryo"
+            android:text="n円"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="30sp"
+            app:autoSizeTextType="uniform" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="28dp" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/meiryob"
+        android:gravity="center_horizontal"
+        android:text="00:00:00"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="30sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="39dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/meterImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:adjustViewBounds="true"
+            android:rotation="60"
+            app:srcCompat="@drawable/meter" />
+
+        <ImageView
+            android:id="@+id/scaleImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/scale" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:fontFamily="@font/meiryo"
+            android:text="00:00:00"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="30sp" />
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.soldout;
+package com.example.soldout.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.soldout.manager.IntentManager;
+import com.example.soldout.manager.QRManager;
+import com.example.soldout.R;
+import com.example.soldout.client.TcpConnection;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -17,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TcpConnection.Open("172.18.13.85", 14200);
+
     }
 
     public void onClickedQRButton(View view){

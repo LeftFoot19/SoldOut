@@ -8,10 +8,10 @@ public class FoodData implements Serializable {
     //サーバ側IDと合わせる
     private static final long serialVersionUID = 6418725139354087069L;
 
-    int productid;
-    int iniPrice;
-    String productName;
-    Date bestBeforeDate;
+    public int productid;
+    public int iniPrice;
+    public String productName;
+    public Date bestBeforeDate;
 
     @Override
     public String toString() {

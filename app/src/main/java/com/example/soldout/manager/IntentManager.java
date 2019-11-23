@@ -1,8 +1,12 @@
 package com.example.soldout.manager;
 
 import android.app.Activity;
+import android.content.Intent;
 
+import com.example.soldout.activity.FoodViewer;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import leftfoot.FoodData;
 
 public class IntentManager {
 

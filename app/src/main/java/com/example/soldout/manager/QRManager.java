@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.example.soldout.client.TcpConnection;
 
+import leftfoot.FoodData;
+
 public class QRManager {
 
     public static void Entry(Activity activity, String readString){
@@ -25,7 +27,10 @@ public class QRManager {
 
             case "FoodData":
                 Log.d("debug", "Entry: " + data);
-                TcpConnection.Send(data);
+                FoodData foodData = TcpConnection.Send(data);
+                if(foodData != null){
+                    IntentManager.OpenFoodViewer(activity, foodData);
+                }
                 break;
 
             case "Address":

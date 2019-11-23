@@ -2,15 +2,18 @@ package com.example.soldout.client;
 
 import android.util.Log;
 
+import com.example.soldout.manager.IntentManager;
+
 import java.io.*;
 import java.net.Socket;
 
 import leftfoot.FoodData;
+import leftfoot.FoodThread;
 
 public class TcpConnection{
 
-    private static String ip;
-    private static int port;
+    public static String ip;
+    public static int port;
 
     public static void Open(String ip, int port) {
 
@@ -19,48 +22,27 @@ public class TcpConnection{
 
     }
 
-    public static void Send(final String text){
+    public static FoodData Send(final String text){
 
-        Thread transmitter = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
+        FoodData foodData = null;
 
-                    //ソケット作成
-                    Socket socket = new Socket(TcpConnection.ip, TcpConnection.port);
+        //データリクエスト
+        FoodThread foodThread = new FoodThread(text);
+        foodThread.start();
 
-                    //出力ストリーム作成
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        try {
 
-                    //リクエスト送信
-                    objectOutputStream.writeObject(text);   //ストリーム書き込み
-                    objectOutputStream.flush();             //書き込み内容送信
+            //同期:スレッド終了待ち
+            foodThread.join();
 
-                    //入力ストリーム作成
-                    ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            //データ取得
+            foodData = foodThread.foodData;
 
-                    //返信待ち
-                    Object received;
-                    if((received = objectInputStream.readObject()) != null){
-                        //型確認
-                        if (received instanceof FoodData){
-                            FoodData foodData = (FoodData) received;
-                            Log.d("user", "received: \n" + foodData.toString());
-                        }else{
-                            Log.d("user", "received: not FoodData");
-                        }
-                    }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-                    //閉じる
-                    socket.close();
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        transmitter.start();
+        return foodData;
 
     }
 

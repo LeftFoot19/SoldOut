@@ -10,6 +10,8 @@ public class FoodData implements Serializable {
 
     public int productid;
     public int iniPrice;
+    public int discountPrice1;
+    public int discountPrice2;
     public String productName;
     public Date bestBeforeDate;
 
@@ -18,8 +20,9 @@ public class FoodData implements Serializable {
         String string = "ID: " + this.productid +
                 "\nProductName: " + this.productName +
                 "\nInitialPrice: " + this.iniPrice +
-                "\nBestBeforeDate: " + this.bestBeforeDate.toString();
-
+                "\nDiscountPrice1:" + this.discountPrice1 +
+                "\nDiscountPrice2:" + this.discountPrice2 +
+                "\nBestBoforeDate: " + this.bestBeforeDate.toString();
         return string;
     }
 

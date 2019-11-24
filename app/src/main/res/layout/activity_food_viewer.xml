@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:isScrollContainer="true"
     android:orientation="vertical"
+    android:overScrollMode="always"
     android:padding="4pt"
     android:paddingStart="4pt"
     android:paddingLeft="4pt"
@@ -12,82 +14,101 @@
     android:paddingEnd="4pt"
     android:paddingRight="4pt"
     android:paddingBottom="4pt"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
     tools:context=".activity.FoodViewer">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="46dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textAlignment="center">
-
-        <TextView
-            android:id="@+id/productNameText"
-            android:layout_width="276dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/meiryo"
-            android:text="商品名"
-            android:textAlignment="center"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="30sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/currentPriceText"
-            android:layout_width="117dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/meiryo"
-            android:text="n円"
-            android:textAlignment="center"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="30sp"
-            app:autoSizeTextType="uniform" />
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="28dp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="39dp" />
-
-    <FrameLayout
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="9dp">
 
-        <ImageView
-            android:id="@+id/meterImageView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:adjustViewBounds="true"
-            android:rotation="60"
-            app:srcCompat="@drawable/meter" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/scaleImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/scale" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="31dp" />
 
-        <TextView
-            android:id="@+id/remainTimeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:fontFamily="@font/meiryo"
-            android:text="次の賞味期限まで\n00:00:00"
-            android:textAlignment="center"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="20sp" />
-    </FrameLayout>
+            <TextView
+                android:id="@+id/productNameText"
+                android:layout_width="393dp"
+                android:layout_height="52dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/meiryo"
+                android:gravity="center_horizontal"
+                android:text="商品名"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="30sp"
+                app:autoSizeTextType="uniform" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/currentPriceText"
+                android:layout_width="393dp"
+                android:layout_height="54dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/meiryo"
+                android:gravity="center_horizontal"
+                android:text="n円"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="30sp"
+                app:autoSizeTextType="uniform" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="332dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/meterImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:adjustViewBounds="true"
+                    android:rotation="60"
+                    app:srcCompat="@drawable/meter" />
+
+                <ImageView
+                    android:id="@+id/scaleImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/scale" />
+
+                <TextView
+                    android:id="@+id/remainTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:fontFamily="@font/meiryo"
+                    android:text="次の賞味期限まで\n00:00:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="20sp" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/QRButton"
+        android:layout_width="207dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/camera_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

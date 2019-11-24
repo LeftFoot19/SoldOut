@@ -157,8 +157,7 @@ public class FoodViewer extends AppCompatActivity {
             }
 
             //残り時間
-            long remainMillis = Math.max(minDate.getTimeInMillis(), Math.min(this.foodData.bestBeforeDate.getTime() - System.currentTimeMillis(), maxDate.getTimeInMillis()));
-            remainMillis = this.foodData.bestBeforeDate.getTime() - System.currentTimeMillis();
+            long remainMillis = Math.max(minDate.getTimeInMillis(), this.foodData.bestBeforeDate.getTime() - System.currentTimeMillis());
 
             //割引なし
             if(0 < (remainMillis - this.discount0Time.getTimeInMillis())){

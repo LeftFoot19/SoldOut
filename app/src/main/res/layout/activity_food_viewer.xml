@@ -52,16 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="28dp" />
 
-    <TextView
-        android:id="@+id/timeText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/meiryob"
-        android:gravity="center_horizontal"
-        android:text="00:00:00"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="30sp" />
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="39dp" />

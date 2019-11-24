@@ -32,7 +32,6 @@ public class FoodViewer extends AppCompatActivity {
     private FoodData foodData;
     private TextView productNameText;
     private TextView currentPriceText;
-    private TextView timeText;
     private ImageView meterImageView;
     private TextView remainTimeTextView;
 
@@ -110,7 +109,6 @@ public class FoodViewer extends AppCompatActivity {
 
         this.productNameText = this.findViewById(R.id.productNameText);
         this.currentPriceText = this.findViewById(R.id.currentPriceText);
-        this.timeText = this.findViewById(R.id.timeText);
         this.meterImageView = this.findViewById(R.id.meterImageView);
         this.remainTimeTextView = this.findViewById(R.id.remainTimeTextView);
 
@@ -128,14 +126,6 @@ public class FoodViewer extends AppCompatActivity {
     }
 
     public void timeUpdate(){
-
-        /*現在時刻表示*/{
-            DateFormat df = new SimpleDateFormat("HH:mm:ss");
-            final Date date = new Date(System.currentTimeMillis());
-
-            //textView反映
-            this.timeText.setText(df.format(date));
-        }
 
         /*メータ計算*/{
 

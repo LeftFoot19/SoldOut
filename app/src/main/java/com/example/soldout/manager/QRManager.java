@@ -27,7 +27,7 @@ public class QRManager {
 
             case "FoodData":
                 Log.d("debug", "Entry: " + data);
-                FoodData foodData = TcpConnection.Send(data);
+                FoodData foodData = TcpConnection.RequestID(data);
                 if(foodData != null){
                     IntentManager.OpenFoodViewer(activity, foodData);
                 }

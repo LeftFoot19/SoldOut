@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SoldOut</string>
+    <string name="remainHeaderNoDiscount">次の割引まで</string>
+    <string name="remainHeaderOneDiscount">次の割引まで</string>
+    <string name="remainHeaderTwoDiscount">賞味期限まで</string>
 </resources>

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TcpConnection.Open("172.18.13.85", 14200);
+        TcpConnection.Open("192.168.3.64", 14200);
 
     }
 

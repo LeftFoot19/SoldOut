@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/productNameText"
-            android:layout_width="224dp"
+            android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/meiryo"
             android:text="商品名"
@@ -89,14 +89,15 @@
             app:srcCompat="@drawable/scale" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/remainTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:fontFamily="@font/meiryo"
-            android:text="00:00:00"
+            android:text="次の賞味期限まで\n00:00:00"
+            android:textAlignment="center"
             android:textColor="@color/colorTextBlack"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
     </FrameLayout>
 
 </LinearLayout>

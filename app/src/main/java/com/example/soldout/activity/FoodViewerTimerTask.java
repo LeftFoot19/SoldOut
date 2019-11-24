@@ -16,7 +16,7 @@ public class FoodViewerTimerTask extends TimerTask {
     @Override
     public void run() {
 
-        foodViewer.timeReflesh();
+        foodViewer.timeUpdate();
 
     }
 }
